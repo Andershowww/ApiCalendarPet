@@ -29,12 +29,14 @@ builder.Services.AddDbContext<APIDataContext>(options =>
     options.UseSqlServer(connection));
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowOrigin", builder =>
+    options.AddPolicy("AllowAll", builder =>
     {
+
         builder
-            .WithOrigins("http://localhost:3000") // Permita as solicitações do seu frontend
-            .AllowAnyHeader()
-            .AllowAnyMethod();
+          //.WithOrigins("http://localhost:3000", "http://187.39.117.7", "http://192.168.0.200:3000/") // Permita as solicitações do seu frontend
+          .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin();
     });
 });
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
@@ -51,7 +53,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-app.UseCors("AllowOrigin"); // Use a política CORS configurada
+app.UseCors("AllowAll"); // Use a política CORS configurada
 app.MapControllers();
 
 app.Run();
