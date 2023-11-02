@@ -21,6 +21,12 @@ namespace APICalendarPet.Users
 
             return await queryClientes.ToListAsync();
         }
+        public async Task<List<Models.Users>> ValidaUsuario(string CPF, string Senha)
+        {
+            var queryClientes = _context.User.AsQueryable();
+            queryClientes = queryClientes.Where(p => p.CPF == CPF && p.Senha==Senha);
 
+            return await queryClientes.ToListAsync();
+        }
     }
 }
