@@ -27,18 +27,7 @@ string? USERDB = configuration.GetConnectionString("USERDB");
 string? PASSWORDUSER = configuration.GetConnectionString("PASSWORDUSER");
 builder.Services.AddDbContext<APIDataContext>(options =>
     options.UseSqlServer(connection));
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll", builder =>
-    {
-
-        builder
-          //.WithOrigins("http://localhost:3000", "http://187.39.117.7", "http://192.168.0.200:3000/") // Permita as solicitações do seu frontend
-          .AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowAnyOrigin();
-    });
-});
+builder.Services.AddCors();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 
 var app = builder.Build();
@@ -50,10 +39,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseHttpsRedirection(); 
 
 app.UseAuthorization();
-app.UseCors("AllowAll"); // Use a política CORS configurada
+app.UseCors(c =>
+{
+    c.AllowAnyHeader();
+    c.AllowAnyMethod();
+    c.AllowAnyOrigin();
+}); // Use a política CORS configurada
 app.MapControllers();
 
 app.Run();
