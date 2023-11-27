@@ -2,18 +2,11 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using APICalendarPet;
 
-namespace Models
+namespace APICalendarPet.Models.Login
 {
-    [Table("Users")]
-    public class Users
+    public class Login
     {
-        [Key]
-        public int IDUser { get; set; }
-        public string Nome { get; set; }
         public string CPF { get; set; }
         public string Senha { get; set; }
-        public int IDEmpresa { get; set; }
-
     }
 }
-

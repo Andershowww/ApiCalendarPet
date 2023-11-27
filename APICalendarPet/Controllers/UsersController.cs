@@ -2,6 +2,7 @@
 using APICalendarPet.API;
 using APICalendarPet;
 using Microsoft.EntityFrameworkCore;
+using APICalendarPet.Models;
 using APICalendarPet.Users;
 
 namespace APICalendarPet.Controllers
@@ -23,7 +24,7 @@ namespace APICalendarPet.Controllers
         //}
 
         [HttpGet]
-        public async Task<ActionResult<List<Models.Users>>> GetUsuarios()
+        public async Task<ActionResult<List<Models.Users.Users>>> GetUsuarios()
         {
             var usuarios = await _usersRepository.GetUsuarios(1);  // Usar _context.Users, não _context.User
             return usuarios;

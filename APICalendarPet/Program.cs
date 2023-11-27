@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.Net.Http.Headers;
 using APICalendarPet.API;
 using APICalendarPet.Users;
+using APICalendarPet.Agenda;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -29,6 +31,7 @@ builder.Services.AddDbContext<APIDataContext>(options =>
     options.UseSqlServer(connection));
 builder.Services.AddCors();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+builder.Services.AddScoped<IAgendaRepository, AgendaRepository>();
 
 var app = builder.Build();
 

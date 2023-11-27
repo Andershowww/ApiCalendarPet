@@ -3,9 +3,9 @@ using APICalendarPet.API;
 using APICalendarPet;
 using Microsoft.EntityFrameworkCore;
 using APICalendarPet.Users;
-using Models;
+using APICalendarPet.Models.Login;
 
-[Route("api/Login")]
+[Route("api/v1/Login")]
 [ApiController]
 public class LoginController : ControllerBase
 {
@@ -18,6 +18,7 @@ public class LoginController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<int>> ValidaUsuario([FromBody] Login login)
     {
+        try { 
         string cpf = login.CPF.Replace(".","");
         cpf = cpf.Replace("-","");
         var usuarios = await _usersRepository.ValidaUsuario(cpf, login.Senha);  // Usar _context.Users, não _context.User
@@ -25,6 +26,12 @@ public class LoginController : ControllerBase
             return usuarios.FirstOrDefault().IDUser;
         else
             return 0;
+        }
+        catch (Exception ex)
+        {
+
+        }
+        return 0;
     }
 
 }
