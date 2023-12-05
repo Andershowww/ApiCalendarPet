@@ -18,7 +18,7 @@ namespace APICalendarPet.Controllers
         }
 
         [HttpGet("buscasistema")]
-        public async Task<ActionResult<List<Models.Agenda>>> BuscaAgendamentosSistema(int IDEmpresa)
+        public async Task<ActionResult<List<Models.Agenda.Agenda>>> BuscaAgendamentosSistema(int IDEmpresa)
         {
             try
             {
@@ -33,9 +33,22 @@ namespace APICalendarPet.Controllers
             return Ok();
         }
 
+        [HttpPost("atualizaservs")]
+        public async void AtualizaServicos(List<Models.Agenda.AtualizaSistema> agenda)
+        {
+            try
+            {
+                _agendaRepository.AtualizaServicosAgendamentosSistema(agenda);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
 
         [HttpPost("cadagenda")]
-        public async Task<ActionResult<Models.Agenda>> CriaAgendamento(Models.Agenda agenda)
+        public async Task<ActionResult<Models.Agenda.Agenda>> CriaAgendamento(Models.Agenda.Agenda agenda)
         {
             try
             {

@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\APICalendarPet"
+    "\\APICalendarPet",
+    "\\APICalendarPet\\Models",
+    "\\APICalendarPet\\Models\\Agenda"
   ],
-  "SelectedNode": "\\APICalendarPet.sln",
+  "SelectedNode": "\\APICalendarPet\\Models\\Agenda\\Agenda.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -1,7 +1,7 @@
 ﻿using APICalendarPet;
 using System.ComponentModel.DataAnnotations;
 
-namespace APICalendarPet.Models
+namespace APICalendarPet.Models.Agenda
 {
     public class Agenda
     {
